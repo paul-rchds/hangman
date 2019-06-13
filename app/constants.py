@@ -1,0 +1,4 @@
+IN_PROGRESS = 'in_progress'
+COMPLETE = 'complete'
+LOST = 'lost'
+GAME_STATUS_CHOICES = (IN_PROGRESS, COMPLETE, LOST)

@@ -2,14 +2,28 @@ version: '2'
 services:
   web:
     build: .
-    command: bash -c "flask run --host=0.0.0.0"
+#    command: bash -c "python run.py"
+    command: bash -c "sleep 100000"
     ports:
-        - '5000:5000'
+        - '8080:8080'
     volumes:
       - .:/code
-#      - media:/code/media/
     environment:
-      FLASK_APP: hangman
+      FLASK_APP: app
       FLASK_ENV: development
-#    depends_on:
-#      - postgres
+      POSTGRES_PASSWORD: jf984HWFj
+    depends_on:
+      - postgres
+
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: jf984HWFj
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    logging:
+      options:
+        max-size: 1m
+
+volumes:
+    db_data:

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <br>
+  <h4>{% block title %}High Scores{% endblock %}</h4>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Score</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for hs in high_scores %}
+        <tr>
+          <td>{{ hs.game.user.username }}</td>
+          <td>{{ hs.score }}</td>
+          <td>{{ hs.duration }}</td>
+          <td>{{ hs.created }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

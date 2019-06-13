@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <br>
+  <h4>{% block title %}Register{% endblock %}</h4>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-body">
+      <form method="post">
+        <div class="form-group">
+            <input class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Please enter your name">
+            <small id="emailHelp" class="form-text text-muted">Your name will be used to track your high scores.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </form>
+  </div>
+</div>
+{% endblock %}

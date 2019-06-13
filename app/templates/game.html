@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <br>
+  <h4>{% block title %}Playing as '{{ g.user.username }}'{% endblock %}</h4>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Game State</h5>
+            <p class="card-text">Number of turns: {{ game.turn_count }}</p>
+            <p class="card-text">Number of incorrect guesses: {{ game.incorrect_count }}</p>
+            <p class="card-text">Start time: {{ game.start_time }}</p>
+            <a href="{{ url_for('reset') }}" role="button" class="btn btn-danger">Reset Game</a>
+          </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h1 class="card-title">{{ game.blanked_word }}</h1>
+            <form method="post">
+                <div class="form-group">
+                    <input class="form-control" name="letter" id="letter" maxlength="1" placeholder="Please enter a letter" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
