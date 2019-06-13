@@ -1,6 +1,4 @@
-import functools
-from flask import g, redirect, url_for
-from flask import session, redirect, url_for, request, render_template, flash, g
+from flask import redirect, url_for, g
 from app.helper import get_or_create_game, get_user
 
 

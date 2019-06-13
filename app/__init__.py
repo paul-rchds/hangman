@@ -1,17 +1,17 @@
 from flask import Flask
 from app.views import RegisterView, GameView, ResetView, HighScoresView
 from app.extensions import db
-from app.helper import initialize_fixtures
+# from database import init_db
 
 
-def create_app(test_config=None):
+def create_app():
     app = Flask(__name__)
     app.config.from_object('config')
     db.init_app(app)
 
-    # db.drop_all(app=app)
-    db.create_all(app=app)
-    # initialize_fixtures(db)
+    with app.app_context():
+        db.create_all()
+        # init_db()
 
     app.add_url_rule('/', view_func=RegisterView.as_view('register'))
     app.add_url_rule('/game-on/', view_func=GameView.as_view('game'))

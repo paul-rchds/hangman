@@ -1,5 +1,5 @@
 <!doctype html>
-<title>{% block title %}{% endblock %}</title>
+<title>{% block title %}Hangman{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -12,8 +12,8 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{ url_for('register') }}">Hangman</a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('game') }}">Game</a>
         </li>
@@ -21,12 +21,13 @@
           <a class="nav-link" href="{{ url_for('high_scores') }}">High Scores</a>
         </li>
       </ul>
+      {% if g.user %}
+      <span class="navbar-text">Playing game as <b>{{ g.user['username'] }}</b></span>
+      {% endif %}
     </div>
   </nav>
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-
+  <br>
+  <br>
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       {% for category, message in messages %}

@@ -1,7 +1,6 @@
-from config import WORD_CHOICES
-from app.models import Answer, User, Game
 from flask import session
 from app.constants import IN_PROGRESS
+from app.models import User, Game
 
 
 def get_or_create_game(user):
@@ -11,7 +10,7 @@ def get_or_create_game(user):
         return game_in_progress
     else:
         new_game = Game(user_id=user.id)
-        new_game.save()
+        new_game.start_new_game()
         return new_game
 
 
@@ -31,10 +30,4 @@ def get_or_create(session, model, **kwargs):
         return instance
 
 
-def initialize_fixtures(db):
-    print('initialize_fixtures')
-    for word in WORD_CHOICES:
-        print(word)
-        answer = Answer(word=word)
-        db.session.add(answer)
-        db.session.commit()
+
