@@ -23,10 +23,10 @@
     <div class="col">
         <div class="card">
           <div class="card-body">
-              <h5 class="card-title">Incorrect guesses: <b>{{ game.incorrect_count }}</b> of <b>{{ MAX_INCORRECT }}</b></h5>
+              <h5 class="card-title">Incorrect guesses: <b>{{ game.incorrect_count }}</b> of <b>{{ game.max_incorrect }}</b></h5>
               <h6 class="card-subtitle mb-2 text-muted">Total turns taken: {{ game.turn_count }}</h6>
               <p class="card-text">Start time: {{ game.start_time }}</p>
-              <a href="{{ url_for('reset') }}" role="button" class="btn btn-danger">Reset Game</a>
+              <a href="{{ url_for('reset.reset') }}" role="button" class="btn btn-danger">Reset Game</a>
           </div>
         </div>
     </div>

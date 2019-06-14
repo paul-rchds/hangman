@@ -1,8 +1,8 @@
-from app.extensions import db
 from datetime import datetime
 from random import randint
 from flask import flash
-from app.constants import IN_PROGRESS, GAME_STATUS_CHOICES, LOST, COMPLETE
+from app.constants import IN_PROGRESS, LOST, COMPLETE
+from app.extensions import db
 from settings import MAX_INCORRECT, BLANK_CHARACTER, POSSIBLE_ANSWERS
 
 
