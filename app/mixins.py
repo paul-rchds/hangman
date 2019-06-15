@@ -23,7 +23,6 @@ class ApiMixin(Mixin):
         messages = []
 
         for message in get_flashed_messages(with_categories=True):
-            print(message)
             if message[0] == 'danger':
                 status = STATUS_ERROR
 
@@ -39,7 +38,7 @@ class ApiMixin(Mixin):
         try:
             inputs = request.get_json(force=True)
         except BadRequest:
-            flash('Invalid Input.', 'danger')
+            flash('Could not read json format.', 'danger')
 
         return inputs
 

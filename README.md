@@ -1,8 +1,11 @@
 # Hangman
 
+Simple hangman game that can be play
+
 ## Stack
 * Flask
 * SQLAlchemy
+* Pytest
 * Postgres
 * Bootstrap
 * Docker
