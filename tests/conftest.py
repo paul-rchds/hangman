@@ -16,11 +16,8 @@ def app():
 
     app = create_app({
         'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': SQLALCHEMY_DATABASE_URI
+        'SQLALCHEMY_DATABASE_URI': SQLALCHEMY_DATABASE_URI,
     })
-
-    with app.app_context():
-        pass
 
     yield app
 

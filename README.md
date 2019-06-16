@@ -26,16 +26,16 @@ a “high score”)
 * Letters are case-insensitive.
 
 ## Endpoints
-Appending '/api' to any endpoint will return JSON and also accept it for POSTs. For example `GET /game` a rendered template and
-`GET /game/api/` JSON. 
+Appending '/api' to any endpoint will return JSON and also accept it for POST requests. For example `GET /game` will return
+a rendered template and `GET /game/api/` will return JSON. 
 
 
-* `GET /`               # Returns registration form
+* `GET /`               # Returns registration form.
 * `POST /`              # Accepts `username` 
-* `GET /game`           # Returns current state of game based on current user.  
-* `POST /game`          # Accepts `letter`
-* `GET /reset`          # Resets the game for the current user
-* `GET /high-scores`    # Lists high scores
+* `GET /game`           # Returns current state of game based on current user set in session cookie.
+* `POST /game`          # Accepts `letter` parameter.
+* `GET /reset`          # Resets the game for the current user.
+* `GET /high-scores`    # Lists high scores.
 
 
 ## Stack
@@ -59,11 +59,11 @@ docker-compose up
 ```
 docker-compose up
 docker ps # Get container_id
-docker exec <container_id> pytest
+docker exec <container_id> pytest -v
 ```
 
 
 ## Possible improvements
-* In hindsight the views could have been a lot simpler if they only implemented a JSON API and some front-end code 
+* In hindsight the views could have been simpler if they only implemented a JSON API and some front-end code 
 was used to submit forms and get data.
 * I should have used migrations to track changes to the database.
