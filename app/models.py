@@ -15,6 +15,9 @@ class User(Base):
     username = db.Column(db.String(255), unique=True, nullable=False)
     games = db.relationship('Game', backref='user', lazy='dynamic')
 
+    def serialize(self):
+        return {'username': self.username}
+
 
 class HighScore(Base):
     score = db.Column(db.Integer)
@@ -40,6 +43,14 @@ class HighScore(Base):
         )
         db.session.add(new_high_score)
         db.session.commit()
+
+    def serialize(self):
+        return {
+            'username': self.game.user.username,
+            'score': self.score,
+            'duration': str(self.duration),
+            'created': self.created,
+        }
 
 
 class Game(Base):
@@ -118,3 +129,12 @@ class Game(Base):
             return None
 
         return db.session.commit()
+
+    def serialize(self):
+        return {
+            'max_incorrect': MAX_INCORRECT,
+            'turn_count': self.turn_count,
+            'start_time': self.start_time,
+            'incorrect_count': self.incorrect_count,
+            'blanked_word': self.blanked_word,
+        }

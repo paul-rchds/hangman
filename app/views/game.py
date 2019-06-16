@@ -31,19 +31,10 @@ class GameBase(MethodView):
 
         flash('Input should be a single character between A-Z or 0-9', 'danger')
 
-
     def get_context(self):
         return {
-            'game': {
-                'max_incorrect': MAX_INCORRECT,
-                'turn_count': g.game.turn_count,
-                'start_time': g.game.start_time,
-                'incorrect_count': g.game.incorrect_count,
-                'blanked_word': g.game.blanked_word,
-            },
-            'user': {
-                'username': g.user.username
-            }
+            'game': g.game.serialize(),
+            'user': g.user.serialize(),
         }
 
     def get(self):

@@ -1,6 +1,5 @@
-flask
-psycopg2
-Flask-SQLAlchemy
-Flask-Migrate
-gunicorn
-pytest
+Flask==1.0.3
+Flask-SQLAlchemy==2.4.0
+pytest==4.6.3
+SQLAlchemy-Utils==0.34.0
+psycopg2==2.8.3

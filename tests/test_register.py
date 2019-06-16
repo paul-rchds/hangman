@@ -1,16 +1,29 @@
+from tests.helper import parse_json, is_status_okay
+import json
+
+LOGIN_DATA = {'username': 'Paul'}
 
 
-def register(client, username):
-    return client.post('/login', data=dict(
-        username=username,
-    ), follow_redirects=True)
-
-
-def reset(client):
-    return client.get('/login', follow_redirects=True)
-
-
-def test_register(client):
+def test_register_get(client):
     response = client.get('/')
-    assert response.status_code == 200
     assert b'Please enter your name' in response.data
+
+
+def test_register_get_api(client):
+    response = client.get('/api/')
+    assert is_status_okay(response.data)
+
+
+def test_register_post(client):
+    response = client.post('/', data=LOGIN_DATA, follow_redirects=True)
+    assert b'Playing  game as' in response.data
+
+
+def test_register_post_api(client):
+    response = client.post('/api/', data=json.dumps(LOGIN_DATA), follow_redirects=True)
+    print(response.data)
+    assert is_status_okay(response.data)
+
+
+
+

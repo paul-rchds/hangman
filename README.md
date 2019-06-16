@@ -23,7 +23,7 @@ a “high score”)
 
 ## Notes
 * For convenience sake, secrets have been commited to git as environmental variables in dokcer-compose file. 
-
+* Letters are case-insensitive.
 
 ## Endpoints
 Appending '/api' to any endpoint will return and accept JSON for POSTs. For example `GET /game` a rendered template and
@@ -66,3 +66,4 @@ docker exec <container_id> pytest
 ## Possible improvements
 * In hindsight the views could have been a lot simpler if they only implemented a JSON API and some front-end code 
 was used to submit forms and get data.
+* I should have used migrations to track changes to the database.

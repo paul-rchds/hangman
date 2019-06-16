@@ -6,15 +6,8 @@ from app.models import HighScore
 class HighScoresBase(MethodView):
 
     def get_context(self):
-        results = []
         high_scores = HighScore.query.order_by(HighScore.score.desc()).all()
-        for high_score in high_scores:
-            results.append({
-                'username': high_score.game.user.username,
-                'score': high_score.score,
-                'duration': str(high_score.duration),
-                'created': high_score.created,
-            })
+        results = [hs.serialize() for hs in high_scores]
         return {'results': results}
 
     def get(self):
