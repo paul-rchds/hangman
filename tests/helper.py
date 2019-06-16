@@ -33,6 +33,8 @@ def win_game(client):
         game = Game.query.get(1)
         for letter in list(game.answer):
             response = client.post('/game/api/', data=json.dumps({'letter': letter}))
+            if b'Well done, you have won' in response.data:
+                return response
 
         return response
 

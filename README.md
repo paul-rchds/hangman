@@ -57,7 +57,7 @@ docker-compose up
 
 ## Tests
 ```
-docker-compose up
+docker-compose up -d
 docker ps # Get container_id
 docker exec <container_id> pytest -v
 ```
