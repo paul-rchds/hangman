@@ -2,7 +2,6 @@ from flask import redirect, url_for, flash, g
 from flask.views import MethodView
 from app.helper import get_or_create_game, get_user
 from app.mixins import HtmlMixin, ApiMixin
-from settings import MAX_INCORRECT
 
 
 class GameBase(MethodView):

@@ -26,7 +26,7 @@ a “high score”)
 * Letters are case-insensitive.
 
 ## Endpoints
-Appending '/api' to any endpoint will return and accept JSON for POSTs. For example `GET /game` a rendered template and
+Appending '/api' to any endpoint will return JSON and also accept it for POSTs. For example `GET /game` a rendered template and
 `GET /game/api/` JSON. 
 
 
@@ -49,7 +49,7 @@ Appending '/api' to any endpoint will return and accept JSON for POSTs. For exam
 
 ## Get Started
 ```bash
-git clone <repo>
+git clone git@github.com:paul-rchds/hangman.git
 docker-compose up
 # Browse to http://127.0.0.1:8080
 ```
