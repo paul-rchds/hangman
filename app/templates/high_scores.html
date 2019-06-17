@@ -13,7 +13,6 @@
         <tr>
           <th scope="col">User</th>
           <th scope="col">Score</th>
-          <th scope="col">Duration</th>
           <th scope="col">Completed</th>
         </tr>
       </thead>
@@ -21,9 +20,8 @@
         {% for result in results %}
         <tr>
           <td>{{ result.username }}</td>
-          <td>{{ result.score }}</td>
-          <td>{{ result.duration }}</td>
-          <td>{{ result.created }}</td>
+          <td>{{ result.high_score }}</td>
+          <td>{{ result.complete_time }}</td>
         </tr>
         {% endfor %}
       </tbody>

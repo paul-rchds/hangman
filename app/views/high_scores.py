@@ -1,13 +1,14 @@
 from flask.views import MethodView
 from app.mixins import HtmlMixin, ApiMixin
-from app.models import HighScore
+from app.models import Game
+from app.constants import COMPLETE
 
 
 class HighScoresBase(MethodView):
 
     def get_context(self):
-        high_scores = HighScore.query.order_by(HighScore.score.desc()).all()
-        results = [hs.serialize() for hs in high_scores]
+        games = Game.query.order_by(Game.high_score.desc()).filter_by(status=COMPLETE)
+        results = [game.serialize() for game in games]
         return {'results': results}
 
     def get(self):

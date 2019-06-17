@@ -2,6 +2,7 @@ from flask import redirect, url_for, flash, g
 from flask.views import MethodView
 from app.helper import get_or_create_game, get_user
 from app.mixins import HtmlMixin, ApiMixin
+from app.managers import GameManager
 
 
 class GameBase(MethodView):
@@ -42,14 +43,15 @@ class GameBase(MethodView):
 
     def post(self):
         letter = self.validate_input()
+        game_manager = GameManager(g.game)
 
         if letter:
-            g.game.add_letter(letter)
+            game_manager.add_letter(letter)
 
-        if g.game.has_lost():
+        if game_manager.has_lost():
             flash("GAME OVER - You guessed 5 incorrect letters.", 'danger')
 
-        if g.game.has_won():
+        if game_manager.has_won():
             flash("Well done, you have won.", 'success')
 
         return self.get()

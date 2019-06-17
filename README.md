@@ -64,7 +64,6 @@ docker exec <container_id> pytest -v
 
 
 ## Improvements
-* Game manager should be created so game and highscore models can be cleaned up.
 * In hindsight the views could have been simpler if they only implemented a JSON API and some front-end code 
 was used to submit forms and get data.
 * I should have used migrations to track changes to the database.
