@@ -1,7 +1,7 @@
 from datetime import datetime
 from random import randint
 from flask import flash
-from app.constants import IN_PROGRESS, LOST, COMPLETE
+from app.constants import IN_PROGRESS
 from app.extensions import db
 from settings import MAX_INCORRECT, BLANK_CHARACTER, POSSIBLE_ANSWERS
 
@@ -20,21 +20,6 @@ class User(Base):
 
     def serialize(self):
         return {'username': self.username}
-
-
-# class HighScore(Base):
-#     score = db.Column(db.Integer)
-#     created = db.Column(db.DateTime, nullable=False)
-#     duration = db.Column(db.Interval, nullable=False)
-#     game_id = db.Column(db.Integer, db.ForeignKey('game.id'), unique=True, nullable=False)
-#
-#     def serialize(self):
-#         return {
-#             'username': self.game.user.username,
-#             'score': self.score,
-#             'duration': str(self.duration),
-#             'created': self.created,
-#         }
 
 
 class Game(Base):
