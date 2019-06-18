@@ -18,5 +18,3 @@ def create_app(test_config=None):
     app.register_blueprint(urls.high_scores_bp)
     app.register_blueprint(urls.reset_bp)
     return app
-
-

@@ -1,0 +1,2 @@
+class AlreadyGuessedError(Exception):
+    pass

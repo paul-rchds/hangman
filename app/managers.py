@@ -1,8 +1,7 @@
 from datetime import datetime
-from flask import flash
 from app.constants import LOST, COMPLETE
-from app.extensions import db
 from settings import MAX_INCORRECT, BLANK_CHARACTER
+from app.errors import AlreadyGuessedError
 
 
 class GameManager:
@@ -13,8 +12,7 @@ class GameManager:
     def add_letter(self, letter):
 
         if letter in self.game.guessed_letters:
-            flash(f"You have already guessed the letter '{letter}'", 'danger')
-            return None
+            raise AlreadyGuessedError
 
         self.game.guessed_letters += letter
         self.game.turn_count += 1
@@ -24,12 +22,12 @@ class GameManager:
         else:
             self.game.incorrect_count += 1
 
-        db.session.commit()
+        self.game.save()
 
     def has_lost(self):
         if self.game.incorrect_count >= MAX_INCORRECT:
             self.game.status = LOST
-            db.session.commit()
+            self.game.save()
             return True
         else:
             return False
@@ -59,4 +57,4 @@ class GameManager:
         self.game.high_score = self.calculate_score()
         self.game.status = COMPLETE
         self.game.complete_time = datetime.now()
-        db.session.commit()
+        self.game.save()

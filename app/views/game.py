@@ -3,6 +3,7 @@ from flask.views import MethodView
 from app.helper import get_or_create_game, get_user
 from app.mixins import HtmlMixin, ApiMixin
 from app.managers import GameManager
+from app.errors import AlreadyGuessedError
 
 
 class GameBase(MethodView):
@@ -46,7 +47,10 @@ class GameBase(MethodView):
         game_manager = GameManager(g.game)
 
         if letter:
-            game_manager.add_letter(letter)
+            try:
+                game_manager.add_letter(letter)
+            except AlreadyGuessedError:
+                flash(f"You have already guessed the letter '{letter}'", 'danger')
 
         if game_manager.has_lost():
             flash("GAME OVER - You guessed 5 incorrect letters.", 'danger')

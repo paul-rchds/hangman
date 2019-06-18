@@ -50,6 +50,13 @@ class Game(Base):
 
         return game
 
+    def save(self):
+
+        if self.id is None:
+            db.session.add(self)
+
+        return db.session.commit()
+
     @classmethod
     def get_random_answer(cls):
         answer = None
